@@ -53,7 +53,9 @@ export default function RegisterForm() {
           type="email"
           autoComplete="email"
           placeholder="Email address"
-          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${errors.email ? "border-red-400 bg-red-50" : "border-gray-200"}`}
+          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
+            focus:ring-2 focus:border-transparent
+            ${errors.email ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
           {...register("email")}
         />
         {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>}
@@ -70,7 +72,9 @@ export default function RegisterForm() {
           type="password"
           autoComplete="new-password"
           placeholder="Password (min 8 chars, 1 uppercase, 1 number)"
-          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${errors.password ? "border-red-400 bg-red-50" : "border-gray-200"}`}
+          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
+            focus:ring-2 focus:border-transparent
+            ${errors.password ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
           {...register("password")}
         />
         {errors.password && <p className="mt-1.5 text-xs text-red-500">{errors.password.message}</p>}
@@ -87,7 +91,9 @@ export default function RegisterForm() {
           type="password"
           autoComplete="new-password"
           placeholder="Confirm password"
-          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${errors.confirmPassword ? "border-red-400 bg-red-50" : "border-gray-200"}`}
+          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
+            focus:ring-2 focus:border-transparent
+            ${errors.confirmPassword ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
           {...register("confirmPassword")}
         />
         {errors.confirmPassword && <p className="mt-1.5 text-xs text-red-500">{errors.confirmPassword.message}</p>}
@@ -96,7 +102,8 @@ export default function RegisterForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed shadow-lg shadow-blue-200 uppercase tracking-wider text-sm"
+        className="btn-3d w-full text-white font-bold py-3.5 rounded-xl transition-all disabled:opacity-60 disabled:cursor-not-allowed uppercase tracking-wider text-sm"
+        style={{ background: "var(--color-primary)" }}
       >
         {isSubmitting ? (
           <span className="flex items-center justify-center gap-2">
@@ -111,7 +118,7 @@ export default function RegisterForm() {
 
       <p className="text-sm text-center text-gray-400">
         Already have an account?{" "}
-        <Link to="/login" className="text-blue-600 hover:underline font-semibold">
+        <Link to="/login" className="text-[var(--color-primary)] hover:underline font-semibold">
           Sign In
         </Link>
       </p>

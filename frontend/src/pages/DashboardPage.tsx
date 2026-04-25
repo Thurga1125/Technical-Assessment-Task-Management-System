@@ -25,7 +25,7 @@ function CircularProgress({ pct }: { pct: number }) {
       <circle cx="65" cy="65" r={r} fill="none" stroke="#E5E7EB" strokeWidth="10" />
       <circle
         cx="65" cy="65" r={r} fill="none"
-        stroke={pct === 100 ? "#22C55E" : "#3B82F6"}
+        stroke={pct === 100 ? "#22C55E" : "#3FA9FF"}
         strokeWidth="10"
         strokeDasharray={circ}
         strokeDashoffset={offset}
@@ -127,19 +127,19 @@ export default function DashboardPage() {
     });
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-[color:rgba(144,213,255,0.08)]">
       {/* Sidebar */}
       <aside className="w-56 fixed inset-y-0 left-0 bg-white border-r border-gray-100 flex flex-col z-20 shadow-sm">
         {/* Logo */}
         <div className="px-5 py-5 border-b border-gray-100">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shadow-sm">
+            <div className="w-9 h-9 bg-[var(--color-primary)] rounded-xl flex items-center justify-center shadow-sm">
               <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
               </svg>
             </div>
             <div className="leading-none">
-              <div className="text-[9px] font-black text-blue-600 tracking-[0.2em]">TASK</div>
+              <div className="text-[9px] font-black text-[var(--color-primary)] tracking-[0.2em]">TASK</div>
               <div className="text-[9px] font-black text-gray-900 tracking-[0.2em]">FLOW</div>
             </div>
           </Link>
@@ -162,7 +162,7 @@ export default function DashboardPage() {
         {/* User + Logout */}
         <div className="px-3 py-4 border-t border-gray-100 space-y-1">
           <div className="flex items-center gap-3 px-3 py-2">
-            <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">
+            <div className="w-8 h-8 bg-[var(--color-primary)] text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">
               {userInitial}
             </div>
             <div className="min-w-0">
@@ -192,7 +192,7 @@ export default function DashboardPage() {
           </div>
           <button
             onClick={openCreate}
-            className="flex items-center gap-2 bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-sm"
+            className="flex items-center gap-2 bg-[var(--color-primary)] text-white font-bold px-5 py-2.5 rounded-xl hover:bg-[color:rgba(63,169,255,0.9)] transition-colors shadow-lg shadow-[color:rgba(144,213,255,0.55)] text-sm"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -234,7 +234,7 @@ export default function DashboardPage() {
           {/* Stats cards */}
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { label: "Total Tasks", value: tasks.length, dot: "bg-blue-500", desc: "All tasks" },
+              { label: "Total Tasks", value: tasks.length, dot: "bg-[var(--color-primary)]", desc: "All tasks" },
               { label: "To Do", value: todoCnt, dot: "bg-gray-400", desc: "Not started yet" },
               { label: "In Progress", value: inProgCnt, dot: "bg-yellow-400", desc: "Currently active" },
               { label: "Done", value: doneCnt, dot: "bg-green-400", desc: "Completed tasks" },
@@ -266,7 +266,7 @@ export default function DashboardPage() {
               placeholder="Search tasks..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-white outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-white outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
             />
           </div>
 
@@ -278,8 +278,8 @@ export default function DashboardPage() {
                 onClick={() => setStatusFilter(s)}
                 className={`px-4 py-2.5 text-xs font-bold rounded-xl transition-colors ${
                   statusFilter === s
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "bg-white border border-gray-200 text-gray-500 hover:border-blue-300"
+                    ? "bg-[var(--color-primary)] text-white shadow-sm"
+                    : "bg-white border border-gray-200 text-gray-500 hover:border-[var(--color-primary-soft)]"
                 }`}
               >
                 {s === ALL ? "All Tasks" : s === "TODO" ? "To Do" : s === "IN_PROGRESS" ? "In Progress" : "Done"}
@@ -290,7 +290,7 @@ export default function DashboardPage() {
           <select
             value={sortOrder}
             onChange={e => setSortOrder(e.target.value as "newest" | "oldest")}
-            className="text-sm border border-gray-200 rounded-xl px-3 py-2.5 bg-white outline-none focus:ring-2 focus:ring-blue-500 text-gray-600 font-medium"
+            className="text-sm border border-gray-200 rounded-xl px-3 py-2.5 bg-white outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-gray-600 font-medium"
           >
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>
@@ -364,11 +364,11 @@ export default function DashboardPage() {
 
 function NavItem({ icon, label, active, badge }: { icon: React.ReactNode; label: string; active?: boolean; badge?: number }) {
   return (
-    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${active ? "bg-blue-50 text-blue-600" : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"}`}>
+    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors cursor-pointer ${active ? "bg-[color:rgba(144,213,255,0.18)] text-[var(--color-primary)]" : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"}`}>
       {icon}
       <span className="flex-1">{label}</span>
       {badge !== undefined && (
-        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${active ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-500"}`}>
+        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${active ? "bg-[color:rgba(144,213,255,0.3)] text-[var(--color-primary)]" : "bg-gray-100 text-gray-500"}`}>
           {badge}
         </span>
       )}

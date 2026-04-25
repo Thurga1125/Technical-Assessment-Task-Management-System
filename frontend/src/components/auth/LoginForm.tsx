@@ -42,7 +42,7 @@ export default function LoginForm() {
       {/* Email */}
       <div className="relative">
         <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-          <svg className="w-4.5 w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         </div>
@@ -50,7 +50,9 @@ export default function LoginForm() {
           type="email"
           autoComplete="email"
           placeholder="Email address"
-          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${errors.email ? "border-red-400 bg-red-50" : "border-gray-200"}`}
+          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
+            focus:ring-2 focus:border-transparent
+            ${errors.email ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
           {...register("email")}
         />
         {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>}
@@ -67,7 +69,9 @@ export default function LoginForm() {
           type="password"
           autoComplete="current-password"
           placeholder="Password"
-          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${errors.password ? "border-red-400 bg-red-50" : "border-gray-200"}`}
+          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
+            focus:ring-2 focus:border-transparent
+            ${errors.password ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
           {...register("password")}
         />
         {errors.password && <p className="mt-1.5 text-xs text-red-500">{errors.password.message}</p>}
@@ -76,7 +80,8 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed shadow-lg shadow-blue-200 uppercase tracking-wider text-sm"
+        className="btn-3d w-full text-white font-bold py-3.5 rounded-xl transition-all disabled:opacity-60 disabled:cursor-not-allowed uppercase tracking-wider text-sm"
+        style={{ background: "var(--color-primary)" }}
       >
         {isSubmitting ? (
           <span className="flex items-center justify-center gap-2">
@@ -91,7 +96,7 @@ export default function LoginForm() {
 
       <p className="text-sm text-center text-gray-400">
         Don't have an account?{" "}
-        <Link to="/register" className="text-blue-600 hover:underline font-semibold">
+        <Link to="/register" className="text-[var(--color-primary)] hover:underline font-semibold">
           Register
         </Link>
       </p>

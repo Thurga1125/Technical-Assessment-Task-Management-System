@@ -5,8 +5,11 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
+import axios from "axios";
 import api, { setAccessToken } from "../lib/api";
 import type { User } from "../types";
+
+const REFRESH_URL = `${import.meta.env.VITE_API_URL ?? "http://localhost:3001/api"}/auth/refresh`;
 
 interface AuthState {
   user: User | null;
@@ -29,12 +32,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    api
-      .post("/auth/refresh")
+    // Use raw axios (not the api instance) so the response interceptor
+    // does NOT fire — avoids the redirect-to-/login reload loop on 401.
+    axios
+      .post(REFRESH_URL, {}, { withCredentials: true })
       .then(({ data }) => {
         setAccessToken(data.accessToken);
         setState({ user: null, accessToken: data.accessToken, isLoading: false });
-        return api.get("/tasks");
       })
       .catch(() => {
         setState({ user: null, accessToken: null, isLoading: false });
