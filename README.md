@@ -145,7 +145,7 @@ Visit [http://localhost:5173](http://localhost:5173)
 ### Database → Neon
 
 1. Create a free PostgreSQL database at [neon.tech](https://neon.tech)
-2. Copy the connection string — you'll need it for Railway
+2. DATABASE_URL=postgresql://neondb_owner:npg_wsq4KkxHYFv0@ep-broad-dawn-ams8rtcb.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require
 
 ### Backend → Railway
 
