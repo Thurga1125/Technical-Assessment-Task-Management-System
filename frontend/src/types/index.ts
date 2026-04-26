@@ -6,6 +6,16 @@ export interface User {
   email: string;
 }
 
+export interface Project {
+  id: string;
+  name: string;
+  description?: string | null;
+  userId: string;
+  tasks: { id: string; status: TaskStatus }[];
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface Task {
   id: string;
   title: string;
@@ -14,6 +24,7 @@ export interface Task {
   priority: TaskPriority;
   dueDate?: string | null;
   userId: string;
+  projectId?: string | null;
   createdAt: string;
   updatedAt: string;
 }
