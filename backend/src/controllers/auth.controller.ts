@@ -4,10 +4,15 @@ import { prisma } from "../lib/prisma";
 import { signAccessToken, signRefreshToken, verifyRefreshToken } from "../lib/jwt";
 import { RegisterInput, LoginInput } from "../validations/auth.schema";
 
+const IS_PROD = process.env.NODE_ENV === "production";
+
+// SameSite=None is required for cross-origin cookie delivery (frontend and backend
+// on different domains). Strict would silently drop the cookie on cross-origin requests.
+// SameSite=None requires Secure=true, which is enforced in production.
 const COOKIE_OPTIONS = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: "strict" as const,
+  secure: IS_PROD,
+  sameSite: (IS_PROD ? "none" : "lax") as "none" | "lax",
   maxAge: 7 * 24 * 60 * 60 * 1000,
   path: "/",
 };
