@@ -15,7 +15,7 @@ export async function createTask(
   req: AuthRequest & { body: CreateTaskInput },
   res: Response
 ): Promise<void> {
-  const { title, description, status, priority, dueDate } = req.body;
+  const { title, description, status, priority, dueDate, projectId } = req.body;
 
   const task = await prisma.task.create({
     data: {
@@ -25,6 +25,7 @@ export async function createTask(
       priority,
       dueDate: dueDate ? new Date(dueDate) : null,
       userId: req.userId!,
+      projectId: projectId ?? null,
     },
   });
   res.status(201).json(task);
@@ -42,7 +43,7 @@ export async function updateTask(
     return;
   }
 
-  const { title, description, status, priority, dueDate } = req.body;
+  const { title, description, status, priority, dueDate, projectId } = req.body;
   const task = await prisma.task.update({
     where: { id },
     data: {
@@ -51,6 +52,7 @@ export async function updateTask(
       ...(status !== undefined && { status }),
       ...(priority !== undefined && { priority }),
       ...(dueDate !== undefined && { dueDate: dueDate ? new Date(dueDate) : null }),
+      ...(projectId !== undefined && { projectId: projectId ?? null }),
     },
   });
   res.json(task);

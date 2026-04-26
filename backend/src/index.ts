@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes";
 import taskRoutes from "./routes/tasks.routes";
+import projectRoutes from "./routes/projects.routes";
 import { errorHandler } from "./middleware/errorHandler";
 
 const app = express();
@@ -35,6 +36,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/projects", projectRoutes);
 
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok" });
