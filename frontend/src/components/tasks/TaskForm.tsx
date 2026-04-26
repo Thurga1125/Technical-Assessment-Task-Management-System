@@ -58,10 +58,11 @@ export default function TaskForm({ defaultValues, onSubmit, onCancel }: TaskForm
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
       {/* Title */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+        <label htmlFor="task-title" className="block text-sm font-semibold text-gray-700 mb-1.5">
           Task Title <span className="text-red-500">*</span>
         </label>
         <input
+          id="task-title"
           placeholder="Enter task title..."
           className={`w-full px-4 py-3 text-sm border rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-gray-50 ${errors.title ? "border-red-400" : "border-gray-200"}`}
           {...register("title")}
@@ -71,10 +72,11 @@ export default function TaskForm({ defaultValues, onSubmit, onCancel }: TaskForm
 
       {/* Description */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+        <label htmlFor="task-description" className="block text-sm font-semibold text-gray-700 mb-1.5">
           Description <span className="text-gray-400 font-normal">(optional)</span>
         </label>
         <textarea
+          id="task-description"
           rows={3}
           placeholder="Optional description..."
           className="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none bg-gray-50 transition-all"
@@ -138,8 +140,9 @@ export default function TaskForm({ defaultValues, onSubmit, onCancel }: TaskForm
 
       {/* Due Date */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-1.5">Due Date</label>
+        <label htmlFor="task-due-date" className="block text-sm font-semibold text-gray-700 mb-1.5">Due Date</label>
         <input
+          id="task-due-date"
           type="date"
           className="w-full px-4 py-3 text-sm border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-all"
           {...register("dueDate")}

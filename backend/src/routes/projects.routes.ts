@@ -10,16 +10,17 @@ import {
   deleteProject,
   getProjectTasks,
 } from "../controllers/projects.controller";
+import { asyncHandler } from "../lib/asyncHandler";
 
 const router = Router();
 
 router.use(authenticate);
 router.use(apiRateLimiter);
 
-router.get("/", getProjects);
-router.post("/", validate(createProjectSchema), createProject);
-router.put("/:id", validate(updateProjectSchema), updateProject);
-router.delete("/:id", deleteProject);
-router.get("/:id/tasks", getProjectTasks);
+router.get("/", asyncHandler(getProjects));
+router.post("/", validate(createProjectSchema), asyncHandler(createProject));
+router.put("/:id", validate(updateProjectSchema), asyncHandler(updateProject));
+router.delete("/:id", asyncHandler(deleteProject));
+router.get("/:id/tasks", asyncHandler(getProjectTasks));
 
 export default router;

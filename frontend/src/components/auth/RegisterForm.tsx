@@ -43,59 +43,77 @@ export default function RegisterForm() {
       )}
 
       {/* Email */}
-      <div className="relative">
-        <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-          <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
+      <div>
+        <label htmlFor="register-email" className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
+          Email address
+        </label>
+        <div className="relative">
+          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <input
+            id="register-email"
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
+              focus:ring-2 focus:border-transparent
+              ${errors.email ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
+            {...register("email")}
+          />
         </div>
-        <input
-          type="email"
-          autoComplete="email"
-          placeholder="Email address"
-          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
-            focus:ring-2 focus:border-transparent
-            ${errors.email ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
-          {...register("email")}
-        />
         {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>}
       </div>
 
       {/* Password */}
-      <div className="relative">
-        <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-          <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-          </svg>
+      <div>
+        <label htmlFor="register-password" className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
+          Password
+        </label>
+        <div className="relative">
+          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <input
+            id="register-password"
+            type="password"
+            autoComplete="new-password"
+            placeholder="Min 8 chars, 1 uppercase, 1 number"
+            className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
+              focus:ring-2 focus:border-transparent
+              ${errors.password ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
+            {...register("password")}
+          />
         </div>
-        <input
-          type="password"
-          autoComplete="new-password"
-          placeholder="Password (min 8 chars, 1 uppercase, 1 number)"
-          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
-            focus:ring-2 focus:border-transparent
-            ${errors.password ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
-          {...register("password")}
-        />
         {errors.password && <p className="mt-1.5 text-xs text-red-500">{errors.password.message}</p>}
       </div>
 
       {/* Confirm Password */}
-      <div className="relative">
-        <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-          <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
+      <div>
+        <label htmlFor="register-confirm-password" className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
+          Confirm password
+        </label>
+        <div className="relative">
+          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <input
+            id="register-confirm-password"
+            type="password"
+            autoComplete="new-password"
+            placeholder="Repeat your password"
+            className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
+              focus:ring-2 focus:border-transparent
+              ${errors.confirmPassword ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
+            {...register("confirmPassword")}
+          />
         </div>
-        <input
-          type="password"
-          autoComplete="new-password"
-          placeholder="Confirm password"
-          className={`w-full pl-11 pr-4 py-3.5 text-sm bg-gray-50 border rounded-xl outline-none transition-all
-            focus:ring-2 focus:border-transparent
-            ${errors.confirmPassword ? "border-red-400 bg-red-50 focus:ring-red-300" : "border-gray-200 focus:ring-[#3FA9FF]/40"}`}
-          {...register("confirmPassword")}
-        />
         {errors.confirmPassword && <p className="mt-1.5 text-xs text-red-500">{errors.confirmPassword.message}</p>}
       </div>
 

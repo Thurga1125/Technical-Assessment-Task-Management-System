@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 
 interface ModalProps {
   open: boolean;
@@ -7,7 +7,12 @@ interface ModalProps {
   children: ReactNode;
 }
 
+const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 export default function Modal({ open, onClose, title, children }: ModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Escape key handler
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -16,19 +21,44 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
     return () => document.removeEventListener("keydown", handleKey);
   }, [open, onClose]);
 
+  // Focus trap: keep keyboard focus inside the modal while open
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.activeElement as HTMLElement | null;
+    const elements = dialogRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE);
+    const first = elements?.[0];
+    const last = elements?.[elements.length - 1];
+    first?.focus();
+
+    function handleTab(e: KeyboardEvent) {
+      if (e.key !== "Tab" || !elements?.length) return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first?.focus(); }
+      }
+    }
+    document.addEventListener("keydown", handleTab);
+    return () => {
+      document.removeEventListener("keydown", handleTab);
+      prev?.focus();
+    };
+  }, [open]);
+
   if (!open) return null;
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-md">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        className="bg-white rounded-xl shadow-xl w-full max-w-md"
+      >
         <div className="flex items-center justify-between p-5 border-b border-gray-200">
           <h2 id="modal-title" className="text-lg font-semibold text-gray-900">
             {title}
